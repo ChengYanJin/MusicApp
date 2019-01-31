@@ -1,23 +1,19 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    Hello World!
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
 export default {
   name: 'App'
 }
 </script>
 
-<style>
+<style scoped lang="stylus" rel="stylesheet/stylus">
+ @import "common/stylus/variable"
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color:$color-theme
 }
 </style>

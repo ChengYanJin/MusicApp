@@ -20,8 +20,7 @@ export default {
   methods: {
     _getRecommend() {
       getRecommend().then(res => {
-        console.log("有没有response呢")
-        console.log(res)
+        console.log("调用getRecommend()")
         if (res.code === ERR_OK) {
           console.log(res.data.slider);
         }

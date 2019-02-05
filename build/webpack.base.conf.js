@@ -39,6 +39,7 @@ module.exports = {
       'common': resolve('client/common'),
       'components':resolve('client/components'),
       'api':resolve('client/api'),
+      'base':resolve('client/base')
     }
   },
   module: {

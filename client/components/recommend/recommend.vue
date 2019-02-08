@@ -11,7 +11,7 @@
         </slider> 
     </div>
     <div class="recommend-list">
-      <h1 class="list-title">Recommendations</h1>
+      <!-- <h1 class="list-title">Recommendations</h1> -->
       <ul></ul>
     </div>
   </div>

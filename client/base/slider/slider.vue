@@ -12,7 +12,7 @@
 <script type="text/ecmascript-6">
 import BScroll from "better-scroll";
 import { addClass } from "common/js/dom";
-import { setTimeout } from "timers";
+import { setTimeout, clearTimeout } from "timers";
 
 export default {
   data() {
@@ -21,9 +21,7 @@ export default {
       currentPageIndex: 0
     };
   },
-  props: {
-    // the type of the Carousel
-
+  props: { // the type of the Carousel
     loop: {
       type: Boolean,
       default: true
@@ -34,12 +32,12 @@ export default {
     },
     interval: {
       type: Number,
-      default: 2000// 2000ms
+      default: 2000 // 2000ms
     }
   },
   mounted() {
     setTimeout(() => {
-      // browser refreshes every 17ms
+      // [browser refreshes every 17ms] setTimeout 20ms to ensure DOM has already rendered.
       this._setSliderWidth();
       this._initDots();
       this._initSlider();
@@ -110,9 +108,15 @@ export default {
       this.timer = setTimeout(() => {
 				this.slider.goToPage(pageIndex, 0, 400)
       }, this.interval);
-    }
-  }
+		}
+	},
+	destroyed(){
+		clearTimeout(this.timer)
+	}
+
+	
 };
+
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">

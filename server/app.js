@@ -10,6 +10,7 @@
 // var app = express();
 
 var axios = require('axios')
+
 // var apiRoutes = express.Router()
 
 // apiRoutes.get('/getRecommend', function (req, res) {
@@ -98,10 +99,26 @@ app.get('/getRecommend', function (req, res) {
     },
     params: req.query
   }).then(response => {
+ 
     res.json(response.data) // send [response] from axios to client end as [res]
   }).catch(e => {
     console.log(e)
   })
 })
 
+app.get('/getDiscList', function (req, res) { //get diss list
+  var url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg'
+  axios.get(url, {
+    headers: {
+      referer: 'https://y.qq.com/portal/playlist.html',
+      origin: 'https://y.qq.com',
+
+    },
+    params: req.query
+  }).then(response => {
+    res.json(response.data) 
+  }).catch(e => {
+    console.log(e)
+  })
+})
 module.exports = app;

@@ -41,7 +41,7 @@ var axios = require('axios')
 //   var result = Math.round((Math.random() * (max - min)) + min);
 //   res.json({ result: result });
 // });
-// // view engine setup  
+// // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
 
@@ -72,23 +72,21 @@ var axios = require('axios')
 
 // module.exports = app;
 
-var express = require("express");
-var app = express();
+var express = require('express')
+var app = express()
 
-app.get("/random/:min/:max", function(req, res) {
-    var min = parseInt(req.params.min);
-    var max = parseInt(req.params.max);
-    if (isNaN(min) || isNaN(max)) {
-        res.status(400);
-        res.json({ error: "Bad request." });
-        return;
-    }
+app.get('/random/:min/:max', function (req, res) {
+  var min = parseInt(req.params.min)
+  var max = parseInt(req.params.max)
+  if (isNaN(min) || isNaN(max)) {
+    res.status(400)
+    res.json({ error: 'Bad request.' })
+    return
+  }
 
-    var result = Math.round((Math.random() * (max - min)) + min);
-    res.json({ result: result });
-});
-
-
+  var result = Math.round((Math.random() * (max - min)) + min)
+  res.json({ result: result })
+})
 
 app.get('/getRecommend', function (req, res) {
   var url = 'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg'
@@ -99,26 +97,41 @@ app.get('/getRecommend', function (req, res) {
     },
     params: req.query
   }).then(response => {
- 
     res.json(response.data) // send [response] from axios to client end as [res]
   }).catch(e => {
     console.log(e)
   })
 })
 
-app.get('/getDiscList', function (req, res) { //get diss list
+// get diss list
+app.get('/getDiscList', function (req, res) {
   var url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg'
   axios.get(url, {
     headers: {
       referer: 'https://y.qq.com/portal/playlist.html',
-      origin: 'https://y.qq.com',
-
+      origin: 'https://y.qq.com'
     },
     params: req.query
   }).then(response => {
-    res.json(response.data) 
+    res.json(response.data)
   }).catch(e => {
     console.log(e)
   })
 })
-module.exports = app;
+
+// get singer list
+app.get('/getSingerList', function (req, res) {
+  var url = 'https://u.y.qq.com/cgi-bin/musicu.fcg'
+  axios.get(url, {
+    headers: {
+      referer: 'https://y.qq.com/portal/singer_list.html',
+      origin: 'https://y.qq.com'
+    },
+    params: req.query
+  }).then(response => {
+    res.json(response.data)
+  }).catch(e => {
+    console.log(e)
+  })
+})
+module.exports = app

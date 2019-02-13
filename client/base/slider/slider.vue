@@ -4,7 +4,7 @@
       <slot></slot>
     </div>
     <div class="dots">
-      <span class="dot" v-for="(item,index) in dots" :class="{active: currentPageIndex === index}"></span>
+      <span class="dot" v-for="(item,index) in dots" :key="index" :class="{active: currentPageIndex === index}"></span>
     </div>
   </div>
 </template>
@@ -12,7 +12,6 @@
 <script type="text/ecmascript-6">
 import BScroll from "better-scroll";
 import { addClass } from "common/js/dom";
-import { setTimeout, clearTimeout } from "timers";
 
 export default {
   data() {
@@ -42,17 +41,18 @@ export default {
       this._initDots();
       this._initSlider();
 
-      if (this.autoPlay) { 
+      if (this.autoPlay) {
         this._play();
 			}
 		}, 20);
-		
+
 		window.addEventListener('resize',() => {
 			if(!this.slider){
 				return
 			}
-			this._setSliderWidth(true)
-			this.slider.refresh() // active when refresh
+      this._setSliderWidth(true)
+      // active when refresh
+			this.slider.refresh()
 		})
   },
   methods: {
@@ -93,7 +93,7 @@ export default {
           pageIndex -= 1
         }
 				this.currentPageIndex = pageIndex;
-				
+
 				if(this.autoPlay){
 					clearTimeout(this.timer)
 					this._play()
@@ -114,7 +114,7 @@ export default {
 		clearTimeout(this.timer)
 	}
 
-	
+
 };
 
 </script>

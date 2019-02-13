@@ -1,6 +1,6 @@
 <template>
 <div class="m-header">
-    <div class="text">Chicken Music</div>
+    <div class="text">Yanjin Music</div>
 </div>
     
 </template>

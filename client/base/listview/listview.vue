@@ -1,7 +1,7 @@
 <template>
   <scroll class="listview" :data="singerdata">
     <ul>
-      <li v-for="item in singerdata" class="list-group-item">
+      <li @click="selectItem(item)" v-for="item in singerdata" :key="item.singer_id" class="list-group-item">
         <img :src="`https://y.gtimg.cn/music/photo_new/T001R300x300M000${item.singer_mid}.jpg?max_age=2592000`" class="avatar">
         <span class="name">{{item.singer_name}}</span>
       </li>
@@ -37,13 +37,15 @@ export default {
     Scroll
   },
   methods:{
+    selectItem(item) {
+      this.$emit('select',item) // dispatch event
+    },
     onShortcutTouchStart(e) {
       let anchorIndex = getData(e.target,'index')
-      console.log(anchorIndex)
+
       getSingerList(anchorIndex).then(res => {
         if( res.code === ERR_OK) {
           this.singerdata = res.singerList.data.singerlist
-          console.log(this.singerdata)
         }
       })
     }

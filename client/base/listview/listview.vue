@@ -38,7 +38,7 @@ export default {
   },
   methods:{
     selectItem(item) {
-      this.$emit('select',item) // dispatch event
+      this.$emit('select',item) // dispatch event, singer component listen the changes and go to different page
     },
     onShortcutTouchStart(e) {
       let anchorIndex = getData(e.target,'index')

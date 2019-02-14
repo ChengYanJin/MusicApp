@@ -10,7 +10,7 @@
 import { getSingerList } from "api/singer";
 import { ERR_OK } from "api/config.js";
 import ListView from "base/listview/listview"
-
+import {mapMutations} from 'vuex'
 const HOT_NAME = 'hot'
 const HOT_SINGER_LEN = 10
 
@@ -33,16 +33,17 @@ export default {
       this.$router.push({
         path: `/singer/${singer.singer_id}`
       })
-
+      this.setSinger(singer) // this.$store.commmit('setSinger')
     },
-  _getSingerList() {
-    getSingerList().then(res => {
+    _getSingerList() {
+      getSingerList().then(res => {
       if( res.code === ERR_OK){
         this.singerlist = res.singerList.data.singerlist
         //this.singerlist= this._normalizeSinger(res.singerList.data.singerlist)
       }
     });
   },
+
   _normalizeSinger(list) { // Current not used as QQ has changed their API.
     let map = {
       hot: {
@@ -67,10 +68,13 @@ export default {
     getSingerList().then(res => {
       if( res.code === ERR_OK){
         this.indexlist = res.singerList.data.tags.index
-        console.log(this.indexlist)
+
       }
     })
-  }
+  },
+  ...mapMutations({
+    setSinger: 'SET_SINGER'
+  })
 }
 };
 </script>

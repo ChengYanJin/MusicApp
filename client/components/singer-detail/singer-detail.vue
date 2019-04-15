@@ -8,14 +8,38 @@
 
 <script type="text/ecmascript-6">
 import {mapGetters} from 'vuex'
+import {getSingerDetail} from 'api/singer'
+import {createSong} from 'common/js/song'
 export default {
+  data() {
+    songs:[]
+  },
   computed: {
-    ...mapGetters([
-      'singer'
-    ])
+    // ...mapGetters([
+    //   'singer'
+    // ])
   },
   created() {
-    console.log(this.singer)
+    getSingerDetail().then(res => {
+      if(res.code === 0){
+        console.log(res.req_0.data.tracks)
+        this.songs = this._normalizeSoneList(res.req_0.data.tracks)
+        console.log(this.songs)
+      }
+    })
+  },
+  methods:{
+    _normalizeSoneList(list) {
+      let ret = []
+      list.forEach(track => {
+        if(track.ksong.id && track.album.id) {
+          console.log("createSong")
+          console.log(track)
+          ret.push(createSong(track))
+        }
+      })
+      return ret
+    }
   }
 }
 </script>

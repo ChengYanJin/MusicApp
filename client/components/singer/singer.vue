@@ -24,6 +24,7 @@ export default {
   mounted() {
     this._getSingerList()
     this._getindexList()
+    //this._getSingerListNetease()
   },
   components:{
     ListView
@@ -33,7 +34,7 @@ export default {
       this.$router.push({
         path: `/singer/${singer.singer_id}`
       })
-      this.setSinger(singer) // this.$store.commmit('setSinger')
+      //this.setSinger(singer) // this.$store.commmit('setSinger')
     },
     _getSingerList() {
       getSingerList().then(res => {

@@ -6,7 +6,7 @@ import axios from 'axios'
 
 /**
  *
- * @param {*} index
+ * @param {Number} index
  */
 export function getSingerList (index) {
   const url = 'api/getSingerList'
@@ -26,7 +26,26 @@ export function getSingerList (index) {
 
   return axios.get(url, {
     params: data
-  }).then((res) => {
+  }).then(res => {
     return Promise.resolve(res.data)
   })
 }
+/**
+ *
+ * @param {Number} singerId get the singer detail information according to the singerId.
+ * @return {Promise} res.data
+ */
+export function getSingerDetail (singerId) {
+  const url = 'api/postSingerDetail'
+  const data = {
+    _: 1550125885520,
+    singerId: singerId
+  }
+  return axios.get(url, {
+    params: data
+  }).then(res => {
+    return Promise.resolve(res.data)
+  })
+}
+
+

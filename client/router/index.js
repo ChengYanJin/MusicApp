@@ -21,12 +21,10 @@ export default new Router({
     {
       path: '/singer',
       component: Singer,
-      children: [
-        {
-          path: ':id',
-          component: SingerDetail
-        }
-      ]
+    },
+    {
+      path:'/singer/:id',
+      component: SingerDetail,
     },
     {
       path: '/rank',

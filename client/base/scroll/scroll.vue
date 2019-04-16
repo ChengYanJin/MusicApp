@@ -25,7 +25,6 @@ export default {
         setTimeout(() => {
             this._initScroll()
         },20)
-
     },
     methods:{
         _initScroll(){

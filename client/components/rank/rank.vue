@@ -1,6 +1,6 @@
 <template>
   <div class="rank">
-     <div class="toplist">
+     <Scroll :data="topList" class="toplist">
        <ul>
          <li class="item" v-for="item in topList" :key=item>
            <div class="icon">
@@ -14,13 +14,14 @@
            </ul>
          </li>
       </ul>
-     </div>
+     </Scroll>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
 import {getTopList} from 'api/rank'
 import {ERR_OK} from 'api/config'
+import Scroll from 'base/scroll/scroll'
 
 export default{
   created(){
@@ -39,6 +40,9 @@ export default{
         }
       })
     }
+  },
+  components:{
+    Scroll
   }
 }
 </script>

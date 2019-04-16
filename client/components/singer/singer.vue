@@ -7,8 +7,8 @@
 </template>
 
 <script type="text/ecmascript-6">
-import { getSingerList } from "api/singer";
-import { ERR_OK } from "api/config.js";
+import { getSingerList } from "api/singer"
+import { ERR_OK } from "api/config.js"
 import ListView from "base/listview/listview"
 import {mapMutations} from 'vuex'
 const HOT_NAME = 'hot'
@@ -24,17 +24,17 @@ export default {
   mounted() {
     this._getSingerList()
     this._getindexList()
-    //this._getSingerListNetease()
   },
   components:{
     ListView
   },
   methods: {
     selectSinger(singer){
+
       this.$router.push({
         path: `/singer/${singer.singer_id}`
       })
-      //this.setSinger(singer) // this.$store.commmit('setSinger')
+      this.setSinger(singer) // commit data to vuex.
     },
     _getSingerList() {
       getSingerList().then(res => {
@@ -73,7 +73,7 @@ export default {
       }
     })
   },
-  ...mapMutations({
+  ...mapMutations({ // mapMutations is a suger syntax = $store.commit()
     setSinger: 'SET_SINGER'
   })
 }

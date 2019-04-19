@@ -8,7 +8,7 @@
 import BScroll from 'better-scroll'
 export default {
     props: {
-        probeType: {
+        probeType: { // dispatch scroll event
             type: Number,
             default: 1
         },

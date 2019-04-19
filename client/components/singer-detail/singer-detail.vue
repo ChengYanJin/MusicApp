@@ -1,8 +1,6 @@
 <template>
 <transition name="slide">
-  <!-- <music-list :title="title" :bg-image="bgImage" :songs="songs"> -->
- <!-- </music-list> --> -->
-  <h1>Bonjour Yanjin</h1>
+  <music-list :title="title" :singer-mid="singerMid" :songs="songs"></music-list>
 </transition>
 </template>
 
@@ -19,22 +17,21 @@ export default {
     }
   },
   activated(){
-    console.log("activated")
-    console.log(this.singer)
+    console.log(this.singer.singer_mid)
     },
   computed: {
     title(){
-      return this.singer.name
+      return this.singer.singer_name
     },
-    bgImage(){
-      return this.singer.avatar
+    singerMid(){
+      return this.singer.singer_mid
     },
     ...mapGetters([ // get data suger syntax
       'singer'
     ])
   },
   created() {
-    console.log("created")
+
     getSingerDetail().then(res => { // mock data 获得歌手详情
       if(res.code === 0){
         console.log(res.req_0.data.tracks)
@@ -54,9 +51,6 @@ export default {
       })
       return ret
     }
-  },
-  mounted(){
-    console.log("mounted")
   },
   components:{
     MusicList

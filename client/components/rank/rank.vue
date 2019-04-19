@@ -1,6 +1,6 @@
 <template>
   <div class="rank">
-     <Scroll :data="topList" class="toplist">
+     <Scroll :data="topList" class="toplist" @scroll="scroll">
        <ul>
          <li class="item" v-for="item in topList" :key=item>
            <div class="icon">

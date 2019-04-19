@@ -33,6 +33,10 @@ export default{
     }
   },
   methods:{
+    scroll(){
+      console.log('scroll')
+    },
+
     _getTopList(){
       getTopList().then(res => {
         if(res.code === ERR_OK){

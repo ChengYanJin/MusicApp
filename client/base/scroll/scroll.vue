@@ -17,9 +17,13 @@ export default {
             default: true,
         },
         data: {
-            type: Array,
-            default: null
-        }
+          type: Array,
+          default: null
+        },
+        listenScroll: {
+          type: Boolean,
+          default: false
+      }
     },
     mounted(){
         setTimeout(() => {
@@ -34,10 +38,16 @@ export default {
         }
         this.scroll = new BScroll(this.$refs.wrapper,{
             probeType: this.probeType,
-            click: this.click
+            click: this.click,
         })
-        console.log(this.scroll)
+
+        if (this.listenScroll) {
+          this.scroll.on('scroll', (pos) => { //
+            this.$emit('scroll', pos.y)
+          })
+        }
         },
+
         enable(){ //method delegate
             this.scroll && this.scroll.enable()
         },
@@ -46,7 +56,7 @@ export default {
         },
         refresh(){
             this.scroll && this.scroll.refresh()
-        }
+        },
     },
     watch: {
          data(){ // if data change, refresh the Scroll

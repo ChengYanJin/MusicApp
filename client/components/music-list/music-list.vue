@@ -11,11 +11,11 @@
 
     <div class="bg-layer" ref="layer"></div>
 
-    <Scroll class="list" @scroll="scroll" :data="songs" ref="list" :probe-type="probeType" :listen-scroll="listenScroll">
+    <scroll class="list" @jinjin="scroll" :data="songs" ref="list" :probe-type="probeType" :listen-scroll="listenScroll">
       <div class="song-list-wrapper">
         <song-list :songs="songs"></song-list>
       </div>
-    </Scroll>
+    </scroll>
   </div>
 </template>
 
@@ -40,14 +40,12 @@ export default{
   },
   data(){
     return{
-      probeType:3,
       scrollY: 0,
-      listenScroll:true
     }
   },
 
   created(){ // monitor the scroll
-  this.probeType = 3
+  this.probeType = 2
   this.listenScroll = true
 
   },
@@ -62,10 +60,10 @@ export default{
     }
   },
   methods:{
-    scroll(pos){ //listen scroll event
-    console.log('scroll event')
-    this.scrollY = pos.y
-    console.log(this.scrollYs)
+
+    scroll(posY){
+    console.log('yan')
+    this.scrollY = posY
     }
   },
   watch:{

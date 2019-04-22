@@ -5,9 +5,7 @@ import {playMode} from 'common/js/config'
   playing: false,
   fullscreen: false,
   playlist: [],
-  sequenceList: [],
-  mode: playMode.sequence,
-  currentIndex: -1, // current playing song 
+  currentIndex: -1, // current playing song
 }
 
 export default state

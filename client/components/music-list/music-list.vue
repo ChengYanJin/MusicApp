@@ -1,6 +1,6 @@
 <template>
   <div class="music-list">
-       <div class="back">
+       <div class="back" @click="goBack()">
         <i class="icon-back"></i>
       </div>
     <h1 class="title" v-html="title"></h1>
@@ -67,6 +67,9 @@ export default{
         list:this.songs,
         index
       })
+    },
+    goBack(){
+      this.$router.push('/singer')
     },
     ...mapActions([
       'selectPlay'

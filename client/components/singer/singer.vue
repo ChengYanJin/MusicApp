@@ -11,6 +11,7 @@ import { getSingerList } from "api/singer"
 import { ERR_OK } from "api/config.js"
 import ListView from "base/listview/listview"
 import {mapMutations} from 'vuex'
+
 const HOT_NAME = 'hot'
 const HOT_SINGER_LEN = 10
 
@@ -68,7 +69,6 @@ export default {
     getSingerList().then(res => {
       if( res.code === ERR_OK){
         this.indexlist = res.singerList.data.tags.index
-
       }
     })
   },

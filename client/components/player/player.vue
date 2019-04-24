@@ -39,9 +39,8 @@
       </div>
     </div>
     </transition>
+
     <transition name="mini">
-
-
     <div class="mini-player" v-show="!fullscreen" @click="openFullScreen">
       <div class="icon">
         <img width="40" height="40" :src="getImageURL()">
@@ -57,6 +56,8 @@
       </div>
     </div>
     </transition>
+
+    <audio :src="currentSong.url"></audio>
   </div>
 </template>
 
@@ -64,6 +65,7 @@
 import {mapGetters, mapMutations} from 'vuex'
 export default {
   computed:{
+    // mix the getters into computed with object spread operator.
     ...mapGetters([
       'fullscreen',
       'playlist',
@@ -208,7 +210,7 @@ export default {
           transform: translate3d(0, -100px, 0)
         .bottom
           transform: translate3d(0, 100px, 0)
-        &.normal-enter-active, &.normal-leave-active
+        s&.normal-enter-active, &.normal-leave-active
           transition: all 0.4s
           .top, .bottom
             transition: all 0.4s cubic-bezier(0.86, 0.18, 0.82, 1.32)
